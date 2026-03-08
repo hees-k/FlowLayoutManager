@@ -36,4 +36,9 @@ dependencies {
     implementation(group: 'androidx.appcompat', name: 'appcompat', version: supportLibVersion)
     implementation(group: 'androidx.recyclerview', name: 'recyclerview', version: supportLibVersion)
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // test
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.7.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
 }
