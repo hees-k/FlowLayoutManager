@@ -5,6 +5,8 @@ android {
 
     buildToolsVersion buildToolsVersion
 
+    namespace 'com.xiaofeng.androidlibs'
+
     defaultConfig {
         applicationId "com.xiaofeng.androidlibs"
         minSdkVersion androidMinSdkVersion

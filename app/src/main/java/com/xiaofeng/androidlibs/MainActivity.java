@@ -32,31 +32,31 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_left:
-                    flowLayoutManager = new FlowLayoutManager().setAlignment(Alignment.LEFT);
-                    flowLayoutManager.setAutoMeasureEnabled(true);
+            int itemId = item.getItemId();
+            if (itemId == R.id.navigation_left) {
+                flowLayoutManager = new FlowLayoutManager().setAlignment(Alignment.LEFT);
+                flowLayoutManager.setAutoMeasureEnabled(true);
 
-                    recyclerView.setLayoutManager(flowLayoutManager);
-                    Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
+                recyclerView.setLayoutManager(flowLayoutManager);
+                Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
 
-                    return true;
-                case R.id.navigation_center:
-                    flowLayoutManager = new FlowLayoutManager().setAlignment(Alignment.CENTER);
-                    flowLayoutManager.setAutoMeasureEnabled(true);
+                return true;
+            } else if (itemId == R.id.navigation_center) {
+                flowLayoutManager = new FlowLayoutManager().setAlignment(Alignment.CENTER);
+                flowLayoutManager.setAutoMeasureEnabled(true);
 
-                    recyclerView.setLayoutManager(flowLayoutManager);
-                    recyclerView.getAdapter().notifyDataSetChanged();
+                recyclerView.setLayoutManager(flowLayoutManager);
+                recyclerView.getAdapter().notifyDataSetChanged();
 
-                    return true;
-                case R.id.navigation_rigth:
-                    flowLayoutManager = new FlowLayoutManager().setAlignment(Alignment.RIGHT);
-                    flowLayoutManager.setAutoMeasureEnabled(true);
+                return true;
+            } else if (itemId == R.id.navigation_rigth) {
+                flowLayoutManager = new FlowLayoutManager().setAlignment(Alignment.RIGHT);
+                flowLayoutManager.setAutoMeasureEnabled(true);
 
-                    recyclerView.setLayoutManager(flowLayoutManager);
-                    recyclerView.getAdapter().notifyDataSetChanged();
+                recyclerView.setLayoutManager(flowLayoutManager);
+                recyclerView.getAdapter().notifyDataSetChanged();
 
-                    return true;
+                return true;
             }
             return false;
         }
