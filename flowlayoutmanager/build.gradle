@@ -2,11 +2,12 @@
 
 apply plugin: 'com.android.library'
 apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion androidCompileSdkVersion
-
     buildToolsVersion buildToolsVersion
+    namespace "com.xiaofeng.flowlayoutmanager"
 
     defaultConfig {
         minSdkVersion androidMinSdkVersion
@@ -33,6 +34,34 @@ android {
 dependencies {
     implementation(group: 'androidx.appcompat', name: 'appcompat', version: supportLibVersion)
     implementation(group: 'androidx.recyclerview', name: 'recyclerview', version: supportLibVersion)
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    archiveClassifier.set("sources") // ✅ Gradle 7+ 호환
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'io.github.hees-k'
+            artifactId = 'FlowLayoutManager'
+            version = System.getenv("RELEASE_VERSION")
+            artifact("$buildDir/outputs/aar/flowlayoutmanager-release.aar")
+            artifact(sourcesJar)
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/hees-k/forked_libraries")
+            credentials {
+                username = System.getenv("GPR_USER")
+                password = System.getenv("GPR_KEY")
+            }
+        }
+    }    
 }
 
 Properties properties = new Properties()
